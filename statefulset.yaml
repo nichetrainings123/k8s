@@ -21,31 +21,31 @@ spec:
 
     spec:
       containers:
-      - name: mysql
-        image: mysql:8.0
+        - name: mysql
+          image: mysql:8.0
 
-        ports:
-        - containerPort: 3306
-          name: mysql
+          ports:
+            - containerPort: 3306
+              name: mysql
 
-        env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: "Password@123"
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "Password@123"
 
-        volumeMounts:
-        - name: mysql-storage
-          mountPath: /var/lib/mysql
+          volumeMounts:
+            - name: mysql-storage
+              mountPath: /var/lib/mysql
 
   volumeClaimTemplates:
-  - metadata:
-      name: mysql-storage
+    - metadata:
+        name: mysql-storage
 
-    spec:
-      accessModes:
-      - ReadWriteOnce
+      spec:
+        accessModes:
+          - ReadWriteOnce
 
-      storageClassName: gp3
+        storageClassName: gp3   # AWS EKS StorageClass
 
-      resources:
-        requests:
-          storage: 10Gi
+        resources:
+          requests:
+            storage: 10Gi
