@@ -44,7 +44,7 @@ spec:
         accessModes:
           - ReadWriteOnce
 
-        storageClassName: gp3   # AWS EKS StorageClass
+        storageClassName: ebs-sc   # AWS EKS StorageClass
 
         resources:
           requests:
