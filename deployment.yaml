@@ -1,27 +1,13 @@
-apiVersion: apps/v1
-kind: Deployment
-
+apiVersion: v1
+kind: Pod
 metadata:
-  name: nginx-deployment
-  labels:
-    app: nginx
-
+  name: test1
+  namespace: training
 spec:
-  replicas: 3
+  imagePullSecrets:
+    - name: ecr-secret
 
-  selector:
-    matchLabels:
-      app: nginx
-
-  template:
-    metadata:
-      labels:
-        app: nginx
-
-    spec:
-      containers:
-      - name: nginx-container
-        image: 797894062399.dkr.ecr.us-east-1.amazonaws.com/labevening-batch
-
-        ports:
-        - containerPort: 80
+  containers:
+    - name: login-app
+      image: 797894062399.dkr.ecr.us-east-1.amazonaws.com/login-app:latest
+      imagePullPolicy: Always
